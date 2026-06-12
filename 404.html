@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // SPA redirect script for GitHub Pages / static hosting without config
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      
+      // Redirect to main index with route in the hash
+      var target = window.location.protocol + '//' + window.location.host + '/#' + path + search + hash;
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to learning platform...</p>
+  </body>
+</html>

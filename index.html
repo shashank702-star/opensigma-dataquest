@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroCost Data Analytics - Free Data Science & Analysis Learning Platform</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Learn Python, SQL, Pandas, NumPy, Data Visualization, and Machine Learning completely free with our interactive, serverless playground that runs code directly in your browser.">
+  <meta name="keywords" content="data science, learning platform, learn python, learn sql, pandas, in browser python, data analysis, charts, free course">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- SQL.js for SQLite in WebAssembly -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+  
+  <!-- Pyodide for Python execution in WebAssembly -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  
+  <!-- Main Application Container -->
+  <div id="app" class="app-container">
+    <!-- RENDERED BY APP.JS -->
+    <div style="display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh;">
+      <div style="text-align: center;">
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: #f8fafc;">
+          Booting ZeroCost Data Analytics Engine...
+        </h2>
+        <div style="width: 50px; height: 50px; border: 3px solid rgba(255, 255, 255, 0.05); border-top-color: #6366f1; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Module Entry -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
