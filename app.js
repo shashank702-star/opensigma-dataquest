@@ -64,7 +64,7 @@ function renderMainFrame() {
         <div class="brand-icon">
           <i data-lucide="brain-circuit" style="color: #ffffff; width:22px; height:22px;"></i>
         </div>
-        <div class="brand-text" style="font-size: 0.95rem; font-weight: 800;">ZeroCost Data</div>
+        <div class="brand-text" style="font-size: 0.85rem; font-weight: 800; letter-spacing: -0.5px;">OpenSigma</div>
       </div>
       
       <nav class="sidebar-menu">
@@ -110,7 +110,7 @@ function renderMainFrame() {
           </div>
         </div>
         <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center;">
-          ZeroCost Data Analytics v1.0 • Client-side
+          OpenSigma DataQuest Academy v1.0 • Client-side
         </div>
       </div>
     </aside>

@@ -1,4 +1,4 @@
-// Lessons database for DataQuest Academy
+// Lessons database for OpenSigma DataQuest Academy
 export const modules = [
   {
     id: "ds-basics",
