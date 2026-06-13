@@ -5,6 +5,7 @@ import { renderSqlSandbox } from './sqlSandbox.js';
 import { renderDataVisualizer } from './dataVisualizer.js';
 import { renderLessonViewer } from './lessonViewer.js';
 import { renderResourceHub } from './resources.js';
+import { renderLandingPage } from './landing.js';
 
 // Global open-access curriculum cache loader
 const cachedData = localStorage.getItem('opensigma_curriculum_data');
@@ -86,6 +87,10 @@ function renderMainFrame() {
         <a id="nav-dashboard" class="menu-item" data-route="dashboard">
           <span class="menu-item-icon"><i data-lucide="layout-dashboard"></i></span>
           <span>Dashboard</span>
+        </a>
+        <a id="nav-tour" class="menu-item" data-route="tour">
+          <span class="menu-item-icon"><i data-lucide="compass"></i></span>
+          <span>Welcome Tour</span>
         </a>
         <a id="nav-resources" class="menu-item" data-route="resources">
           <span class="menu-item-icon"><i data-lucide="library"></i></span>
@@ -193,7 +198,7 @@ function updateSidebarActive(activeRoute) {
   });
 
   // Exact matching for main pages
-  if (['dashboard', 'python', 'sql', 'visualizer', 'resources'].includes(activeRoute)) {
+  if (['dashboard', 'tour', 'python', 'sql', 'visualizer', 'resources'].includes(activeRoute)) {
     const target = document.getElementById(`nav-${activeRoute}`);
     if (target) target.classList.add('active');
   } else if (activeRoute.startsWith('lesson-')) {
@@ -235,13 +240,30 @@ function router() {
 
   updateSidebarActive(path);
 
+  // Check onboarding status
+  const completedCount = Object.keys(state.completedLessons || {}).length;
+  const isOnboarded = localStorage.getItem('opensigma_onboarded') === 'true' || completedCount > 0;
+
   // Render view
   if (path === 'dashboard') {
-    headerIcon.setAttribute('data-lucide', 'layout-dashboard');
-    headerIcon.style.color = 'var(--primary)';
-    headerTitle.textContent = 'Student Dashboard';
-    renderDashboard(freshViewContainer, state, navigateTo);
+    if (isOnboarded) {
+      headerIcon.setAttribute('data-lucide', 'layout-dashboard');
+      headerIcon.style.color = 'var(--primary)';
+      headerTitle.textContent = 'Student Dashboard';
+      renderDashboard(freshViewContainer, state, navigateTo);
+    } else {
+      headerIcon.setAttribute('data-lucide', 'compass');
+      headerIcon.style.color = 'var(--secondary)';
+      headerTitle.textContent = 'Academy Welcome Tour';
+      renderLandingPage(freshViewContainer, state, navigateTo);
+    }
   } 
+  else if (path === 'tour') {
+    headerIcon.setAttribute('data-lucide', 'compass');
+    headerIcon.style.color = 'var(--secondary)';
+    headerTitle.textContent = 'Academy Welcome Tour';
+    renderLandingPage(freshViewContainer, state, navigateTo);
+  }
   else if (path === 'python') {
     headerIcon.setAttribute('data-lucide', 'terminal');
     headerIcon.style.color = 'var(--primary)';

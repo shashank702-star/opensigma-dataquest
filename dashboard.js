@@ -173,6 +173,9 @@ export function renderDashboard(container, state, navigateTo) {
               <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="resources" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem; border-color: rgba(6, 182, 212, 0.2); color: var(--secondary);">
                 <i data-lucide="library" style="width: 16px; height: 16px;"></i> Resource Library & Updater
               </button>
+              <button id="dashboard-reset-btn" class="btn btn-secondary w-full" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem; border-color: rgba(245, 158, 11, 0.15); color: var(--warning);">
+                <i data-lucide="rotate-ccw" style="width: 16px; height: 16px;"></i> Reset Progress & Tour
+              </button>
             </div>
           </div>
 
@@ -198,6 +201,25 @@ export function renderDashboard(container, state, navigateTo) {
       navigateTo(target);
     });
   });
+
+  const resetBtn = container.querySelector('#dashboard-reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      const confirmReset = confirm("Are you sure you want to reset all your learning progress, completed exercises, and badges, and return to the Guest Landing Page?");
+      if (confirmReset) {
+        localStorage.removeItem('dataquest_user_state');
+        localStorage.removeItem('opensigma_onboarded');
+        
+        // Wipe local memory
+        state.completedLessons = {};
+        state.solvedExercises = {};
+        state.openedVisualizer = false;
+        
+        // Reload site to apply landing state
+        window.location.reload();
+      }
+    });
+  }
 
   // Re-create icons
   if (window.lucide) {
