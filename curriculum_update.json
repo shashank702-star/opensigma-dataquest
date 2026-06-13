@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ds-basics",
+    "title": "Data Science & Analysis Basics",
+    "description": "Learn what Data Science is, the differences between careers, and the fundamental statistics required.",
+    "lessons": [
+      {
+        "id": "what-is-ds",
+        "title": "What is Data Science & Data Analysis?",
+        "content": "\n<h2>What is Data Science & Data Analysis?</h2>\n<p>Data is the new oil, but only if it's refined. <strong>Data Science</strong> is the interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from noisy, structured, and unstructured data.</p>\n\n<h3>The Four Types of Data Analysis</h3>\n<p>In data analysis, we generally categorize our work into four stages based on complexity and value:</p>\n<ol>\n  <li><strong>Descriptive Analysis:</strong> \"What happened?\" Summarizing historical data (e.g., monthly sales charts).</li>\n  <li><strong>Diagnostic Analysis:</strong> \"Why did it happen?\" Digging deeper to find causes (e.g., analyzing why sales dropped in April).</li>\n  <li><strong>Predictive Analysis:</strong> \"What is likely to happen?\" Forecasting future trends using statistical models or machine learning.</li>\n  <li><strong>Prescriptive Analysis:</strong> \"How can we make it happen?\" Recommending courses of action to capitalize on forecasts.</li>\n</ol>\n\n<h3>Data Analyst vs. Data Scientist</h3>\n<ul>\n  <li><strong>Data Analysts:</strong> Typically focus on Descriptive and Diagnostic analysis. They query databases with SQL, build visualization dashboards, and report findings to business stakeholders.</li>\n  <li><strong>Data Scientists:</strong> Focus more on Predictive and Prescriptive analysis. They write advanced Python/R code, build machine learning models, and design experimental tests (like A/B testing).</li>\n</ul>\n\n<blockquote>\n  <strong>Data Science Lifecycle:</strong> Business Understanding &rarr; Data Collection &rarr; Data Cleaning &rarr; Exploratory Data Analysis (EDA) &rarr; Model Building &rarr; Deployment.\n</blockquote>\n\n<h3>Recommended Resources & Study Guides</h3>\n<div class=\"resource-grid\">\n  <a href=\"https://www.kaggle.com/learn\" target=\"_blank\" class=\"resource-card\">\n    <div class=\"resource-header\">\n      <span class=\"resource-badge link\">Interactive Site</span>\n      <i data-lucide=\"external-link\" style=\"width:14px;height:14px;color:var(--text-muted);\"></i>\n    </div>\n    <div class=\"resource-title\">Kaggle Learn Portal</div>\n    <div class=\"resource-desc\">Free, hands-on, micro-courses covering Python, SQL, and data visualization.</div>\n    <div class=\"resource-footer\">\n      <span>Open Kaggle</span> <i data-lucide=\"chevron-right\" style=\"width:12px;height:12px;\"></i>\n    </div>\n  </a>\n\n  <a href=\"https://www.youtube.com/watch?v=ua-CiDNNj30\" target=\"_blank\" class=\"resource-card\">\n    <div class=\"resource-header\">\n      <span class=\"resource-badge video\">Video Guide</span>\n      <i data-lucide=\"play-circle\" style=\"width:14px;height:14px;color:var(--text-muted);\"></i>\n    </div>\n    <div class=\"resource-title\">What is Data Science? (Socratica)</div>\n    <div class=\"resource-desc\">A brief, elegant 5-minute introduction to the field and its core disciplines.</div>\n    <div class=\"resource-footer\">\n      <span>Watch Video</span> <i data-lucide=\"chevron-right\" style=\"width:12px;height:12px;\"></i>\n    </div>\n  </a>\n</div>\n",
+        "quiz": {
+          "question": "Which type of data analysis answers the question: 'What is likely to happen in the future?'",
+          "options": [
+            "Descriptive Analysis",
+            "Diagnostic Analysis",
+            "Predictive Analysis",
+            "Prescriptive Analysis"
+          ],
+          "correctIdx": 2,
+          "explanation": "Predictive analysis uses historical data, statistical algorithms, and machine learning techniques to identify the likelihood of future outcomes."
+        },
+        "exercise": {
+          "type": "python",
+          "prompt": "<b>Real-World Scenario: Career Onboarding</b><br>You are setting up the profile database for a new recruit. Define a variable named `role` with the string value 'Data Analyst' to designate their team role, and print the results.",
+          "initialCode": "# Scenario: HR Portal Onboarding\n# Define the onboarding role variable below\nrole = \n\nprint(\"System Alert: New user onboarded as:\", role)\n",
+          "solution": "role = 'Data Analyst'",
+          "testCode": "assert role == 'Data Analyst', 'Role should be equal to the string \"Data Analyst\"'"
+        }
+      }
+    ]
+  }
+]

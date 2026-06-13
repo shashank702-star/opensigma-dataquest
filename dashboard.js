@@ -1,6 +1,6 @@
-import { modules } from './lessons.js';
-
 export function renderDashboard(container, state, navigateTo) {
+  const modules = window.openSigmaModules;
+
   // Compute metrics
   const totalLessons = modules.reduce((sum, mod) => sum + mod.lessons.length, 0);
   const completedLessons = Object.keys(state.completedLessons || {}).length;
@@ -41,7 +41,7 @@ export function renderDashboard(container, state, navigateTo) {
   ];
   
   const unlockedCount = achievements.filter(a => a.unlocked).length;
-
+ 
   // Render main layout
   container.innerHTML = `
     <div class="anim-slide-up">
@@ -154,21 +154,24 @@ export function renderDashboard(container, state, navigateTo) {
             </div>
           </div>
 
-          <!-- Quick Access Sandbox Console -->
+          <!-- Quick Access Sandboxes & Resources -->
           <div class="glass-panel section-card" style="background: rgba(99, 102, 241, 0.02); border-color: rgba(99, 102, 241, 0.1);">
             <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
               <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--secondary); box-shadow: 0 0 8px var(--secondary);"></span>
-              Quick Sandboxes
+              Quick Access Tools
             </h3>
             <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
-              Experiment with direct script runs or load mock DB tables instantly.
+              Launch sandboxes, download cheat sheets, or manage syllabus updates.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <button class="btn btn-primary w-full quick-sandbox-btn" data-target="python" style="font-size: 0.8rem; padding: 0.5rem;">
-                <i data-lucide="terminal" style="width:16px;height:16px;"></i> Python Playground
+              <button class="btn btn-primary w-full quick-sandbox-btn" data-target="python" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                <i data-lucide="terminal" style="width: 16px; height: 16px;"></i> Python Playground
               </button>
-              <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="sql" style="font-size: 0.8rem; padding: 0.5rem;">
-                <i data-lucide="database" style="width:16px;height:16px;"></i> SQL Playground
+              <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="sql" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                <i data-lucide="database" style="width: 16px; height: 16px;"></i> SQL Playground
+              </button>
+              <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="resources" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem; border-color: rgba(6, 182, 212, 0.2); color: var(--secondary);">
+                <i data-lucide="library" style="width: 16px; height: 16px;"></i> Resource Library & Updater
               </button>
             </div>
           </div>

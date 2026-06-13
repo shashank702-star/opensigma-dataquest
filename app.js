@@ -4,6 +4,20 @@ import { renderPythonSandbox } from './pythonSandbox.js';
 import { renderSqlSandbox } from './sqlSandbox.js';
 import { renderDataVisualizer } from './dataVisualizer.js';
 import { renderLessonViewer } from './lessonViewer.js';
+import { renderResourceHub } from './resources.js';
+
+// Global open-access curriculum cache loader
+const cachedData = localStorage.getItem('opensigma_curriculum_data');
+if (cachedData) {
+  try {
+    window.openSigmaModules = JSON.parse(cachedData);
+  } catch (err) {
+    console.warn("Curriculum cache parse failed, using static data:", err);
+    window.openSigmaModules = modules;
+  }
+} else {
+  window.openSigmaModules = modules;
+}
 
 // Global state model
 const state = {
@@ -42,7 +56,7 @@ window.saveUserState = function() {
 
 // Calculate progress percentage
 function getProgressPercent() {
-  const totalLessons = modules.reduce((sum, mod) => sum + mod.lessons.length, 0);
+  const totalLessons = window.openSigmaModules.reduce((sum, mod) => sum + mod.lessons.length, 0);
   const completed = Object.keys(state.completedLessons || {}).length;
   return totalLessons > 0 ? Math.round((completed / totalLessons) * 100) : 0;
 }
@@ -73,6 +87,10 @@ function renderMainFrame() {
           <span class="menu-item-icon"><i data-lucide="layout-dashboard"></i></span>
           <span>Dashboard</span>
         </a>
+        <a id="nav-resources" class="menu-item" data-route="resources">
+          <span class="menu-item-icon"><i data-lucide="library"></i></span>
+          <span>Resource Hub</span>
+        </a>
         
         <span class="menu-label">Interactive Sandboxes</span>
         <a id="nav-python" class="menu-item" data-route="python">
@@ -89,7 +107,7 @@ function renderMainFrame() {
         </a>
 
         <span class="menu-label">Curriculum Courses</span>
-        ${modules.map(mod => `
+        ${window.openSigmaModules.map(mod => `
           <a class="menu-item nav-lesson-group" data-route="lesson-${mod.lessons[0].id}">
             <span class="menu-item-icon">
               <i data-lucide="${mod.id.includes('python') ? 'code-2' : mod.id.includes('sql') ? 'database-backup' : 'pie-chart'}"></i>
@@ -110,7 +128,7 @@ function renderMainFrame() {
           </div>
         </div>
         <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center;">
-          OpenSigma DataQuest Academy v1.0 • Client-side
+          OpenSigma DataQuest Academy v${parseFloat(localStorage.getItem('opensigma_curriculum_version') || '1.0').toFixed(1)} • Client-side
         </div>
       </div>
     </aside>
@@ -175,14 +193,14 @@ function updateSidebarActive(activeRoute) {
   });
 
   // Exact matching for main pages
-  if (['dashboard', 'python', 'sql', 'visualizer'].includes(activeRoute)) {
+  if (['dashboard', 'python', 'sql', 'visualizer', 'resources'].includes(activeRoute)) {
     const target = document.getElementById(`nav-${activeRoute}`);
     if (target) target.classList.add('active');
   } else if (activeRoute.startsWith('lesson-')) {
     // Find lesson ID matching active path modules and highlight module group
     const lesId = activeRoute.replace('lesson-', '');
     let activeMod = null;
-    for (const mod of modules) {
+    for (const mod of window.openSigmaModules) {
       if (mod.lessons.some(l => l.id === lesId)) {
         activeMod = mod;
         break;
@@ -251,6 +269,12 @@ function router() {
     headerTitle.textContent = 'Data Visualizer Playground';
     renderDataVisualizer(freshViewContainer, state, navigateTo);
   } 
+  else if (path === 'resources') {
+    headerIcon.setAttribute('data-lucide', 'library');
+    headerIcon.style.color = 'var(--secondary)';
+    headerTitle.textContent = 'Resource & Downloads Library';
+    renderResourceHub(freshViewContainer, state, navigateTo);
+  }
   else if (path.startsWith('lesson-')) {
     const lessonId = path.substring(7);
     headerIcon.setAttribute('data-lucide', 'graduation-cap');
@@ -278,4 +302,105 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Listen to hash change routing events
   window.addEventListener('hashchange', router);
+
+  // Register PWA service worker for local off-line caching
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log('OpenSigma Service Worker Active'))
+      .catch(err => console.warn('Service worker registration failed:', err));
+  }
+
+  // Check remote server directories for new curriculum updates
+  setTimeout(checkCurriculumUpdates, 2000);
 });
+
+// Asynchronously query raw database for newer course versions
+async function checkCurriculumUpdates() {
+  const autoSyncEnabled = localStorage.getItem('opensigma_auto_sync_enabled') !== 'false';
+  if (!autoSyncEnabled) {
+    console.log("Syllabus background auto-sync check is disabled.");
+    return;
+  }
+  
+  const currentLocalVersion = 1.0;
+  const username = "shashank702-star";
+  const repo = "opensigma-dataquest";
+  
+  let remoteVersionUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/curriculum_version.json`;
+  let remoteDataUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/curriculum_update.json`;
+  
+  const customSyncUrl = localStorage.getItem('opensigma_custom_sync_url') || '';
+  if (customSyncUrl) {
+    remoteDataUrl = customSyncUrl;
+    remoteVersionUrl = customSyncUrl.replace('curriculum_update.json', 'curriculum_version.json');
+  }
+  
+  try {
+    const res = await fetch(remoteVersionUrl + '?t=' + Date.now());
+    if (!res.ok) return;
+    const remoteInfo = await res.json();
+    
+    const savedVersion = parseFloat(localStorage.getItem('opensigma_curriculum_version') || currentLocalVersion);
+    if (remoteInfo.version > savedVersion) {
+      console.log(`Update Found! Syncing remote syllabus v${remoteInfo.version}...`);
+      const dataRes = await fetch(remoteDataUrl + '?t=' + Date.now());
+      if (dataRes.ok) {
+        const remoteModules = await dataRes.json();
+        
+        // Cache new curriculum structure
+        localStorage.setItem('opensigma_curriculum_data', JSON.stringify(remoteModules));
+        localStorage.setItem('opensigma_curriculum_version', remoteInfo.version.toString());
+        
+        showUpdateToast(remoteInfo.version);
+      }
+    }
+  } catch (err) {
+    console.warn("Online update synchronization skipped (Network offline):", err);
+  }
+}
+
+// Render dynamic floating alert dialog for new content syncs
+function showUpdateToast(newVersion) {
+  const toast = document.createElement('div');
+  toast.className = 'glass-panel anim-slide-up';
+  toast.style = `
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1.25rem;
+    z-index: 1000;
+    max-width: 320px;
+    background: rgba(13, 20, 35, 0.95);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 15px rgba(99,102,241,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  `;
+  
+  toast.innerHTML = `
+    <div style="display:flex; align-items:center; gap:0.5rem; font-weight:700;">
+      <i data-lucide="sparkles" style="color:var(--secondary);width:16px;height:16px;"></i>
+      <span>New Content Available!</span>
+    </div>
+    <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">
+      Syllabus version <strong>v${newVersion}</strong> was deployed remotely. Refresh now to sync new lessons.
+    </div>
+    <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
+      <button id="toast-close-btn" class="btn btn-secondary" style="font-size:0.75rem; padding:0.25rem 0.5rem;">Later</button>
+      <button id="toast-reload-btn" class="btn btn-primary" style="font-size:0.75rem; padding:0.25rem 0.75rem;">Sync & Reload</button>
+    </div>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  if (window.lucide) window.lucide.createIcons();
+  
+  document.getElementById('toast-close-btn').addEventListener('click', () => {
+    toast.remove();
+  });
+  
+  document.getElementById('toast-reload-btn').addEventListener('click', () => {
+    window.location.reload();
+  });
+}

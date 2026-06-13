@@ -1,6 +1,5 @@
-import { modules } from './lessons.js';
-
 export function renderLessonViewer(container, state, activeLessonId, navigateTo) {
+  const modules = window.openSigmaModules;
   // Find current lesson and module
   let currentLesson = null;
   let currentModule = null;
