@@ -403,6 +403,7 @@ export function renderResourceHub(container, state, navigateTo) {
       // Save to cache
       localStorage.setItem('opensigma_curriculum_data', JSON.stringify(remoteModules));
       localStorage.setItem('opensigma_curriculum_version', targetVersion.toString());
+      localStorage.setItem('opensigma_last_update_check_time', Date.now().toString());
       window.openSigmaModules = remoteModules;
 
       syncConsole.innerHTML += `<span style="color:var(--success);">&gt; SUCCESS: Syllabus synced successfully! Loaded ${remoteModules.length} paths, ${remoteModules.reduce((s, m) => s + m.lessons.length, 0)} courses.</span><br>`;
@@ -444,6 +445,7 @@ export function renderResourceHub(container, state, navigateTo) {
         const newVer = currentVersion + 0.1;
         localStorage.setItem('opensigma_curriculum_data', JSON.stringify(parsedData));
         localStorage.setItem('opensigma_curriculum_version', newVer.toString());
+        localStorage.setItem('opensigma_last_update_check_time', Date.now().toString());
         window.openSigmaModules = parsedData;
 
         syncConsole.innerHTML += `<span style="color:var(--success);">&gt; SUCCESS: Local file parsed! Loaded v${newVer.toFixed(1)} curriculum (${parsedData.length} paths).</span><br>`;

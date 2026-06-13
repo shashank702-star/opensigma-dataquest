@@ -343,6 +343,19 @@ async function checkCurriculumUpdates() {
     console.log("Syllabus background auto-sync check is disabled.");
     return;
   }
+
+  // Throttle background check to twice a week (once every 3.5 days)
+  const now = Date.now();
+  const lastCheck = parseInt(localStorage.getItem('opensigma_last_update_check_time') || '0');
+  const checkInterval = 3.5 * 24 * 60 * 60 * 1000; // 3.5 days in ms
+
+  if (now - lastCheck < checkInterval) {
+    console.log("Syllabus update check skipped: last checked less than 3.5 days ago (scheduled twice a week).");
+    return;
+  }
+
+  // Record this check timestamp
+  localStorage.setItem('opensigma_last_update_check_time', now.toString());
   
   const currentLocalVersion = 1.0;
   const username = "shashank702-star";
