@@ -1,0 +1,70 @@
+================================================================================
+                       OPENSIGMA DATAQUEST ACADEMY
+                       PANDAS DATA MANIPULATION CHEAT SHEET
+================================================================================
+
+1. PANDAS IMPORT & SERIES/DATAFRAMES
+--------------------------------------------------------------------------------
+import pandas as pd
+
+# Creating a DataFrame from a dictionary
+data = {
+    'UserID': [101, 102, 103],
+    'Age': [25, 30, 22],
+    'Status': ['Active', 'Pending', 'Active']
+}
+df = pd.DataFrame(data)
+
+2. INSPECTING DATA
+--------------------------------------------------------------------------------
+df.head(5)          # View the first 5 rows
+df.tail(3)          # View the last 3 rows
+df.shape            # Get tuple representing size: (rows, columns)
+df.info()           # Summary of columns, non-null counts, and datatypes
+df.describe()       # Statistical summary of numerical columns (Mean, Min, Max, etc.)
+df.dtypes           # Show data types for all columns
+
+3. SELECTION & FILTERING
+--------------------------------------------------------------------------------
+# Selecting Columns
+age_col = df['Age']                 # Selects 'Age' column as a Series
+subset = df[['UserID', 'Status']]    # Selects multiple columns as a DataFrame
+
+# Selecting Rows by index
+first_row = df.iloc[0]               # Select row by integer index position (0)
+
+# Filtering Rows by condition
+active_users = df[df['Status'] == 'Active']
+young_users = df[df['Age'] < 25]
+filtered_both = df[(df['Status'] == 'Active') & (df['Age'] > 20)]
+
+4. DATA CLEANING
+--------------------------------------------------------------------------------
+df.isnull().sum()                   # Count number of missing (NaN) values per column
+df_clean = df.dropna()              # Delete any row containing missing values
+df_filled = df.fillna(0)            # Replace all null cells with 0
+
+# Fill nulls in a specific column with its mean average
+mean_age = df['Age'].mean()
+df['Age'] = df['Age'].fillna(mean_age)
+
+# Renaming Columns
+df = df.rename(columns={'Status': 'UserStatus', 'Age': 'UserAge'})
+
+# Dropping Columns
+df = df.drop(columns=['UserID'])
+
+5. AGGREGATION & GROUPING
+--------------------------------------------------------------------------------
+# Column metrics
+total_age = df['UserAge'].sum()
+avg_age = df['UserAge'].mean()
+median_age = df['UserAge'].median()
+
+# Grouping and calculating metrics per category
+avg_age_by_status = df.groupby('UserStatus')['UserAge'].mean()
+summary = df.groupby('UserStatus').agg({'UserAge': 'mean', 'UserStatus': 'count'})
+
+================================================================================
+© 2026 OpenSigma DataQuest Academy. Free Educational Resource.
+================================================================================

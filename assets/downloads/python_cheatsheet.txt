@@ -1,0 +1,87 @@
+================================================================================
+                       OPENSIGMA DATAQUEST ACADEMY
+                       PYTHON DATA SCIENCE CHEAT SHEET
+================================================================================
+
+1. VARIABLES & ARITHMETIC
+--------------------------------------------------------------------------------
+x = 10                  # Integer assignment
+y = 3.14                # Float assignment
+name = "Data Scout"     # String assignment
+
+# Arithmetic Operators
+addition = x + 5        # 15
+multiplication = x * 2  # 20
+division = x / 3        # 3.333...
+floor_division = x // 3 # 3 (removes decimal)
+modulo = x % 3          # 1 (remainder)
+exponent = x ** 2       # 100 (x squared)
+
+2. LISTS & SEQUENCES
+--------------------------------------------------------------------------------
+data = [10, 20, 30, 40, 50]
+
+# Indexing (Zero-Indexed)
+first_item = data[0]    # 10
+last_item = data[-1]    # 50
+
+# Slicing: data[start_index:end_index_exclusive]
+slice_1 = data[1:3]     # [20, 30]
+slice_2 = data[:3]      # [10, 20, 30] (from beginning)
+slice_3 = data[2:]      # [30, 40, 50] (to end)
+
+# List Functions
+list_len = len(data)    # 5 (number of items)
+list_sum = sum(data)    # 150 (sum of items)
+list_min = min(data)    # 10
+list_max = max(data)    # 50
+
+# List Modifications
+data.append(60)         # Adds 60 to the end
+data.insert(1, 15)      # Inserts 15 at index 1
+
+3. LIST COMPREHENSIONS (FILTERS & MAPPINGS)
+--------------------------------------------------------------------------------
+# Syntax: [expression for item in iterable if condition]
+
+scores = [45, 88, 72, 95, 60, 52]
+
+# Filter: Only keep scores >= 70
+passing = [s for s in scores if s >= 70] # [88, 72, 95]
+
+# Mapping: Double all values
+doubled = [x * 2 for x in scores] # [90, 176, 144, 190, 120, 104]
+
+4. CONDITIONALS & LOOPS
+--------------------------------------------------------------------------------
+# If Statement
+score = 85
+if score >= 90:
+    grade = 'A'
+elif score >= 70:
+    grade = 'B'
+else:
+    grade = 'F'
+
+# For Loop
+for item in data:
+    print("Item:", item)
+
+# While Loop
+count = 0
+while count < 3:
+    print(count)
+    count += 1
+
+5. FUNCTIONS
+--------------------------------------------------------------------------------
+def calculate_average(numbers_list):
+    total = sum(numbers_list)
+    count = len(numbers_list)
+    return total / count
+
+avg = calculate_average([5, 10, 15]) # 10.0
+
+================================================================================
+© 2026 OpenSigma DataQuest Academy. Free Educational Resource.
+================================================================================

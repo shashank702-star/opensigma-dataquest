@@ -1,0 +1,90 @@
+OrderDate,Region,Category,Product,Quantity,Revenue
+2026-01-01,North,Electronics,Premium Laptop,1,1299.99
+2026-01-02,South,Electronics,Wireless Mouse,5,127.50
+2026-01-03,East,Electronics,Mechanical Keyboard,2,179.98
+2026-01-04,West,Furniture,Ergonomic Office Chair,1,249.00
+2026-01-05,North,Home & Kitchen,Glass Water Bottle,10,159.90
+2026-01-06,South,Furniture,LED Desk Lamp,4,138.00
+2026-01-07,East,Electronics,4K Monitor,1,349.99
+2026-01-08,West,Electronics,Bluetooth Speaker,3,179.97
+2026-01-09,North,Electronics,Wireless Mouse,12,306.00
+2026-01-10,South,Furniture,Ergonomic Office Chair,2,498.00
+2026-01-11,East,Home & Kitchen,Glass Water Bottle,5,79.95
+2026-01-12,West,Electronics,4K Monitor,2,699.98
+2026-01-13,North,Electronics,Premium Laptop,1,1299.99
+2026-01-14,South,Electronics,Bluetooth Speaker,4,239.96
+2026-01-15,East,Furniture,LED Desk Lamp,6,207.00
+2026-01-16,West,Home & Kitchen,Glass Water Bottle,8,127.92
+2026-01-17,North,Electronics,Mechanical Keyboard,3,269.97
+2026-01-18,South,Electronics,Wireless Mouse,6,153.00
+2026-01-19,East,Electronics,Premium Laptop,2,2599.98
+2026-01-20,West,Furniture,Ergonomic Office Chair,1,249.00
+2026-01-21,North,Home & Kitchen,Glass Water Bottle,12,191.88
+2026-01-22,South,Electronics,4K Monitor,1,349.99
+2026-01-23,East,Electronics,Bluetooth Speaker,5,299.95
+2026-01-24,West,Furniture,LED Desk Lamp,3,103.50
+2026-01-25,North,Electronics,Wireless Mouse,8,204.00
+2026-01-26,South,Electronics,Premium Laptop,1,1299.99
+2026-01-27,East,Furniture,Ergonomic Office Chair,2,498.00
+2026-01-28,West,Home & Kitchen,Glass Water Bottle,6,95.94
+2026-01-29,North,Electronics,4K Monitor,2,699.98
+2026-01-30,South,Electronics,Bluetooth Speaker,2,119.98
+2026-02-01,East,Furniture,LED Desk Lamp,5,172.50
+2026-02-02,West,Electronics,Wireless Mouse,10,255.00
+2026-02-03,North,Electronics,Mechanical Keyboard,4,359.96
+2026-02-04,South,Home & Kitchen,Glass Water Bottle,7,111.93
+2026-02-05,East,Electronics,Premium Laptop,1,1299.99
+2026-02-06,West,Electronics,4K Monitor,1,349.99
+2026-02-07,North,Furniture,Ergonomic Office Chair,3,747.00
+2026-02-08,South,Electronics,Bluetooth Speaker,6,359.94
+2026-02-09,East,Home & Kitchen,Glass Water Bottle,15,239.85
+2026-02-10,West,Electronics,Wireless Mouse,4,102.00
+2026-02-11,North,Electronics,Premium Laptop,1,1299.99
+2026-02-12,South,Furniture,LED Desk Lamp,2,69.00
+2026-02-13,East,Electronics,4K Monitor,2,699.98
+2026-02-14,West,Electronics,Mechanical Keyboard,3,269.97
+2026-02-15,North,Home & Kitchen,Glass Water Bottle,9,143.91
+2026-02-16,South,Electronics,Wireless Mouse,8,204.00
+2026-02-17,East,Electronics,Premium Laptop,1,1299.99
+2026-02-18,West,Furniture,Ergonomic Office Chair,2,498.00
+2026-02-19,North,Electronics,Bluetooth Speaker,4,239.96
+2026-02-20,South,Furniture,LED Desk Lamp,8,276.00
+2026-02-21,East,Home & Kitchen,Glass Water Bottle,4,63.96
+2026-02-22,West,Electronics,4K Monitor,1,349.99
+2026-02-23,North,Electronics,Wireless Mouse,15,382.50
+2026-02-24,South,Electronics,Premium Laptop,2,2599.98
+2026-02-25,East,Furniture,Ergonomic Office Chair,1,249.00
+2026-02-26,West,Home & Kitchen,Glass Water Bottle,10,159.90
+2026-02-27,North,Electronics,Mechanical Keyboard,5,449.95
+2026-02-28,South,Electronics,Bluetooth Speaker,3,179.97
+2026-03-01,East,Furniture,LED Desk Lamp,4,138.00
+2026-03-02,West,Electronics,Wireless Mouse,6,153.00
+2026-03-03,North,Electronics,4K Monitor,1,349.99
+2026-03-04,South,Home & Kitchen,Glass Water Bottle,11,175.89
+2026-03-05,East,Electronics,Premium Laptop,1,1299.99
+2026-03-06,West,Electronics,Bluetooth Speaker,5,299.95
+2026-03-07,North,Furniture,Ergonomic Office Chair,2,498.00
+2026-03-08,South,Home & Kitchen,Glass Water Bottle,8,127.92
+2026-03-09,East,Electronics,Mechanical Keyboard,2,179.98
+2026-03-10,West,Electronics,Wireless Mouse,12,306.00
+2026-03-11,North,Electronics,Premium Laptop,1,1299.99
+2026-03-12,South,Furniture,LED Desk Lamp,5,172.50
+2026-03-13,East,Electronics,4K Monitor,2,699.98
+2026-03-14,West,Furniture,Ergonomic Office Chair,1,249.00
+2026-03-15,North,Home & Kitchen,Glass Water Bottle,14,223.86
+2026-03-16,South,Electronics,Wireless Mouse,9,229.50
+2026-03-17,East,Electronics,Premium Laptop,2,2599.98
+2026-03-18,West,Electronics,Bluetooth Speaker,3,179.97
+2026-03-19,North,Furniture,LED Desk Lamp,3,103.50
+2026-03-20,South,Home & Kitchen,Glass Water Bottle,6,95.94
+2026-03-21,East,Electronics,Mechanical Keyboard,4,359.96
+2026-03-22,West,Electronics,Wireless Mouse,7,178.50
+2026-03-23,North,Electronics,Premium Laptop,1,1299.99
+2026-03-24,South,Furniture,Ergonomic Office Chair,2,498.00
+2026-03-25,East,Electronics,4K Monitor,1,349.99
+2026-03-26,West,Home & Kitchen,Glass Water Bottle,10,159.90
+2026-03-27,North,Electronics,Bluetooth Speaker,4,239.96
+2026-03-28,South,Furniture,LED Desk Lamp,6,207.00
+2026-03-29,East,Electronics,Wireless Mouse,8,204.00
+2026-03-30,West,Electronics,Premium Laptop,1,1299.99
+2026-03-31,North,Furniture,Ergonomic Office Chair,1,249.00

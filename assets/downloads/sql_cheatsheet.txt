@@ -1,0 +1,90 @@
+================================================================================
+                       OPENSIGMA DATAQUEST ACADEMY
+                       SQL DATABASE QUERYING CHEAT SHEET
+================================================================================
+
+1. BASIC SELECT & FILTERING
+--------------------------------------------------------------------------------
+-- Select all columns from a table
+SELECT * FROM products;
+
+-- Select specific columns and apply filters
+SELECT name, price 
+FROM products 
+WHERE category = 'Electronics' AND price > 100;
+
+-- Sorting results (ascending by default, DESC for descending)
+SELECT * FROM products 
+ORDER BY price DESC;
+
+-- Limit row output count
+SELECT * FROM products 
+LIMIT 5;
+
+2. SQL COMPARISONS & WILDCARDS
+--------------------------------------------------------------------------------
+-- Equal (=), Not Equal (<> or !=), Greater Than (>), Less Than (<)
+SELECT * FROM products WHERE price <> 50.00;
+
+-- Text pattern matching (LIKE)
+-- % matches any sequence of characters, _ matches a single character
+SELECT * FROM products WHERE name LIKE 'Premium%'; -- Starts with 'Premium'
+SELECT * FROM products WHERE name LIKE '%Laptop';   -- Ends with 'Laptop'
+
+-- Checking lists (IN)
+SELECT * FROM customers WHERE state IN ('CA', 'NY', 'TX');
+
+-- Checking ranges (BETWEEN)
+SELECT * FROM products WHERE price BETWEEN 10 AND 100;
+
+3. AGGREGATIONS & GROUPING
+--------------------------------------------------------------------------------
+-- Common Aggregate Functions
+SELECT COUNT(*) FROM orders;                -- Count total rows
+SELECT SUM(quantity) FROM orders;           -- Sum total values
+SELECT AVG(price) FROM products;            -- Find average price
+SELECT MIN(price), MAX(price) FROM products; -- Find lowest/highest price
+
+-- GROUP BY: Group rows sharing values
+-- If a column is in the SELECT list but not in an aggregate, it MUST be in GROUP BY
+SELECT category, COUNT(*) AS item_count, AVG(price) AS average_price
+FROM products
+GROUP BY category;
+
+-- HAVING: Filter groups based on aggregate values (WHERE filters rows BEFORE grouping)
+SELECT category, SUM(stock) AS total_stock
+FROM products
+GROUP BY category
+HAVING total_stock < 50;
+
+4. RELATIONAL JOINS
+--------------------------------------------------------------------------------
+-- INNER JOIN: Returns matches in both tables
+SELECT o.order_id, c.first_name, p.name AS product_name
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN products p ON o.product_id = p.product_id;
+
+-- LEFT JOIN: Returns all left table rows + matches from right
+SELECT c.first_name, o.order_id
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id;
+
+5. ADVANCED CONSTRUCTS
+--------------------------------------------------------------------------------
+-- CTE (Common Table Expression): Temporary named query view
+WITH large_orders AS (
+    SELECT order_id, quantity 
+    FROM orders 
+    WHERE quantity > 2
+)
+SELECT * FROM large_orders;
+
+-- Window Functions: Calculate across matching rows without collapsing them
+SELECT name, price, category,
+       RANK() OVER (PARTITION BY category ORDER BY price DESC) AS price_rank
+FROM products;
+
+================================================================================
+© 2026 OpenSigma DataQuest Academy. Free Educational Resource.
+================================================================================

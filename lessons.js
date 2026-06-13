@@ -241,7 +241,7 @@ doubled_prices = [p * 2 for p in prices]
     </div>
   </a>
 
-  <a href="https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf" download class="resource-card">
+  <a href="assets/downloads/python_cheatsheet.txt" download class="resource-card">
     <div class="resource-header">
       <span class="resource-badge pdf">Download Sheet</span>
       <i data-lucide="download" style="width:14px;height:14px;color:var(--text-muted);"></i>
@@ -335,7 +335,7 @@ print(df.head(2))
     </div>
   </a>
 
-  <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" download class="resource-card">
+  <a href="assets/downloads/pandas_cheatsheet.txt" download class="resource-card">
     <div class="resource-header">
       <span class="resource-badge pdf">Download Sheet</span>
       <i data-lucide="download" style="width:14px;height:14px;color:var(--text-muted);"></i>
@@ -537,7 +537,7 @@ WHERE category = 'Electronics' AND price > 100;
     </div>
   </a>
 
-  <a href="https://web.stanford.edu/class/cs145/cheatsheet.pdf" download class="resource-card">
+  <a href="assets/downloads/sql_cheatsheet.txt" download class="resource-card">
     <div class="resource-header">
       <span class="resource-badge pdf">Download Sheet</span>
       <i data-lucide="download" style="width:14px;height:14px;color:var(--text-muted);"></i>
@@ -963,7 +963,7 @@ YoY Sales Growth = DIVIDE([Total Sales] - CALCULATE([Total Sales], DATEADD('Cale
     </div>
   </a>
 
-  <a href="https://query.prod.outlook.com/active-downloads/sample-financial-data.xlsx" download class="resource-card">
+  <a href="assets/downloads/financial_data_sample.csv" download class="resource-card">
     <div class="resource-header">
       <span class="resource-badge pdf">Download Asset</span>
       <i data-lucide="download" style="width:14px;height:14px;color:var(--text-muted);"></i>
@@ -1148,7 +1148,7 @@ FROM products;
     </div>
   </a>
 
-  <a href="https://learnsql.com/blog/sql-window-functions-cheat-sheet/" target="_blank" class="resource-card">
+  <a href="assets/downloads/sql_cheatsheet.txt" download class="resource-card">
     <div class="resource-header">
       <span class="resource-badge pdf">Download Sheet</span>
       <i data-lucide="download" style="width:14px;height:14px;color:var(--text-muted);"></i>
