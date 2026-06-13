@@ -4,13 +4,40 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script type="text/javascript">
-      // SPA redirect script for GitHub Pages / static hosting without config
+      // SPA redirect script for any hosting deployment (custom domain, GitHub Pages, or subdirectory)
       var path = window.location.pathname;
       var search = window.location.search;
       var hash = window.location.hash;
       
-      // Redirect to main index with route in the hash
-      var target = window.location.protocol + '//' + window.location.host + '/#' + path + search + hash;
+      // Split path into segments
+      var segments = path.split('/').filter(Boolean);
+      
+      // List of known standard app route prefixes
+      var appRoutes = ['dashboard', 'tour', 'python', 'sql', 'visualizer', 'resources', 'lesson'];
+      
+      var target;
+      if (segments.length > 0) {
+        var firstSegment = segments[0];
+        
+        // Check if the first segment is a standard route prefix (or starts with 'lesson')
+        var isRoute = appRoutes.some(function(route) {
+          return firstSegment === route || firstSegment.indexOf('lesson') === 0;
+        });
+        
+        if (!isRoute) {
+          // If first segment is NOT an app route, treat it as a subdirectory prefix (e.g. repo name)
+          var repoPrefix = firstSegment;
+          var remainingPath = '/' + segments.slice(1).join('/');
+          target = window.location.protocol + '//' + window.location.host + '/' + repoPrefix + '/#' + remainingPath + search + hash;
+        } else {
+          // Standard root path route
+          target = window.location.protocol + '//' + window.location.host + '/#' + path + search + hash;
+        }
+      } else {
+        // Direct root hit
+        target = window.location.protocol + '//' + window.location.host + '/#/dashboard' + search + hash;
+      }
+      
       window.location.replace(target);
     </script>
   </head>
