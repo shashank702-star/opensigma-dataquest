@@ -28,5 +28,35 @@
         }
       }
     ]
+  },
+  {
+    "id": "python-pandas",
+    "title": "Python & Pandas Essentials",
+    "description": "Master the fundamentals of Python programming and data manipulation using Pandas DataFrames.",
+    "lessons": [
+      {
+        "id": "python-intro",
+        "title": "Python Basics & Calculations",
+        "content": "\n<h2>Introduction to Python</h2>\n<p>Python is the premier programming language for Data Science. Its clean readability and massive ecosystem of packages (Pandas, Numpy, Scikit-Learn) make it the industry standard.</p>\n\n<h3>Lists and Indexing</h3>\n<p>Lists are used to store multiple items in a single variable. They are ordered, index-based, and zero-indexed (indexing starts at 0):</p>\n<pre><code>prices = [10.5, 20.0, 15.75, 45.90]\n# Access first item\nfirst_price = prices[0] # Outputs 10.5\n# Access last item\nlast_price = prices[-1] # Outputs 45.90\n</code></pre>\n\n<h3>List Comprehensions</h3>\n<p>List comprehensions offer a shorter syntax to create a new list based on the values of an existing list:</p>\n<pre><code># Double all prices\ndoubled_prices = [p * 2 for p in prices]\n</code></pre>\n",
+        "quiz": {
+          "question": "Which of the following indexes represents the first item in a Python list?",
+          "options": [
+            "1",
+            "0",
+            "-1",
+            "Index"
+          ],
+          "correctIdx": 1,
+          "explanation": "Python lists are zero-indexed, meaning that the index `0` represents the first item in the list."
+        },
+        "exercise": {
+          "type": "python",
+          "prompt": "<b>Real-World Scenario: Price Doubler</b><br>Create a list comprehension that doubles all prices in the list `prices` and assign it to the variable `doubled_prices`.",
+          "initialCode": "prices = [10.0, 20.0, 30.0]\ndoubled_prices = \nprint(\"Doubled prices list:\", doubled_prices)\n",
+          "solution": "[p * 2 for p in prices]",
+          "testCode": "assert doubled_prices == [20.0, 40.0, 60.0], 'The doubled prices list is incorrect!'"
+        }
+      }
+    ]
   }
 ]
