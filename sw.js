@@ -1,4 +1,4 @@
-const CACHE_NAME = 'opensigma-cache-v3'; // Increment cache version to force re-install
+const CACHE_NAME = 'opensigma-cache-v4'; // Increment cache version to force re-install
 const ASSETS = [
   '/',
   '/index.html',
@@ -12,6 +12,7 @@ const ASSETS = [
   '/lessonViewer.js',
   '/resources.js',
   '/landing.js',
+  '/csvCleaner.js',
   '/404.html',
   '/curriculum_version.json'
 ];

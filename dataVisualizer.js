@@ -162,8 +162,17 @@ export function renderDataVisualizer(container, state, navigateTo) {
   let currentParsedData = null; // { headers: [], data: [] }
   let chartInstance = null;
 
-  // Initial load
-  loadData(sampleDatasets.sales);
+  // Initial load: check for exported cleaned CSV first
+  if (state.exportedCleanedCsv) {
+    const cleanedOption = document.createElement('option');
+    cleanedOption.value = 'cleaned_export';
+    cleanedOption.textContent = 'Cleaned CSV Export (Active)';
+    cleanedOption.selected = true;
+    datasetSelect.insertBefore(cleanedOption, datasetSelect.firstChild);
+    loadData(state.exportedCleanedCsv);
+  } else {
+    loadData(sampleDatasets.sales);
+  }
 
   // Selector listener
   datasetSelect.addEventListener('change', () => {
@@ -175,6 +184,10 @@ export function renderDataVisualizer(container, state, navigateTo) {
       xSelect.innerHTML = '';
       ySelect.innerHTML = '';
       clearChart();
+    } else if (val === 'cleaned_export') {
+      uploadZone.style.display = 'none';
+      fileStatus.style.display = 'none';
+      loadData(state.exportedCleanedCsv);
     } else {
       uploadZone.style.display = 'none';
       fileStatus.style.display = 'none';

@@ -6,6 +6,7 @@ import { renderDataVisualizer } from './dataVisualizer.js';
 import { renderLessonViewer } from './lessonViewer.js';
 import { renderResourceHub } from './resources.js';
 import { renderLandingPage } from './landing.js';
+import { renderCsvCleaner } from './csvCleaner.js';
 
 // Global open-access curriculum cache loader
 const cachedData = localStorage.getItem('opensigma_curriculum_data');
@@ -26,7 +27,8 @@ const state = {
   solvedExercises: {},
   openedVisualizer: false,
   pythonSandboxPreset: "",
-  sqlSandboxPreset: ""
+  sqlSandboxPreset: "",
+  exportedCleanedCsv: ""
 };
 
 // Load state from localStorage on init
@@ -109,6 +111,10 @@ function renderMainFrame() {
         <a id="nav-visualizer" class="menu-item" data-route="visualizer">
           <span class="menu-item-icon"><i data-lucide="line-chart"></i></span>
           <span>Data Visualizer</span>
+        </a>
+        <a id="nav-cleaner" class="menu-item" data-route="cleaner">
+          <span class="menu-item-icon"><i data-lucide="eraser"></i></span>
+          <span>CSV Cleaner</span>
         </a>
 
         <span class="menu-label">Curriculum Courses</span>
@@ -198,7 +204,7 @@ function updateSidebarActive(activeRoute) {
   });
 
   // Exact matching for main pages
-  if (['dashboard', 'tour', 'python', 'sql', 'visualizer', 'resources'].includes(activeRoute)) {
+  if (['dashboard', 'tour', 'python', 'sql', 'visualizer', 'resources', 'cleaner'].includes(activeRoute)) {
     const target = document.getElementById(`nav-${activeRoute}`);
     if (target) target.classList.add('active');
   } else if (activeRoute.startsWith('lesson-')) {
@@ -291,6 +297,12 @@ function router() {
     headerTitle.textContent = 'Data Visualizer Playground';
     renderDataVisualizer(freshViewContainer, state, navigateTo);
   } 
+  else if (path === 'cleaner') {
+    headerIcon.setAttribute('data-lucide', 'eraser');
+    headerIcon.style.color = 'var(--primary)';
+    headerTitle.textContent = 'CSV Cleaner Tool';
+    renderCsvCleaner(freshViewContainer, state, navigateTo);
+  }
   else if (path === 'resources') {
     headerIcon.setAttribute('data-lucide', 'library');
     headerIcon.style.color = 'var(--secondary)';

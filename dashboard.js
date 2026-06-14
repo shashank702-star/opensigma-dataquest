@@ -170,6 +170,9 @@ export function renderDashboard(container, state, navigateTo) {
               <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="sql" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
                 <i data-lucide="database" style="width: 16px; height: 16px;"></i> SQL Playground
               </button>
+              <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="cleaner" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem; border-color: rgba(99, 102, 241, 0.2); color: var(--text-primary);">
+                <i data-lucide="eraser" style="width: 16px; height: 16px; color: var(--primary);"></i> CSV Cleaner Tool
+              </button>
               <button class="btn btn-secondary w-full quick-sandbox-btn" data-target="resources" style="font-size: 0.8rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem; border-color: rgba(6, 182, 212, 0.2); color: var(--secondary);">
                 <i data-lucide="library" style="width: 16px; height: 16px;"></i> Resource Library & Updater
               </button>
