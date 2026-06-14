@@ -48,6 +48,14 @@ export function renderResourceHub(container, state, navigateTo) {
       size: "4.9 KB",
       type: "CSV Dataset",
       icon: "table"
+    },
+    {
+      title: "Messy E-Commerce CSV Dataset (Kaggle)",
+      desc: "A messy Kaggle-style product feedback dataset containing duplicate entries, blank cells, whitespaces, and inconsistent status cases. Perfect for testing CSV Cleaner workflows.",
+      file: "assets/downloads/kaggle_messy_test.csv",
+      size: "0.5 KB",
+      type: "CSV Dataset",
+      icon: "table"
     }
   ];
 

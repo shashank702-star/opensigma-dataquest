@@ -1,4 +1,4 @@
-const CACHE_NAME = 'opensigma-cache-v4'; // Increment cache version to force re-install
+const CACHE_NAME = 'opensigma-cache-v5'; // Increment cache version to force re-install
 const ASSETS = [
   '/',
   '/index.html',
@@ -13,6 +13,7 @@ const ASSETS = [
   '/resources.js',
   '/landing.js',
   '/csvCleaner.js',
+  '/assets/downloads/kaggle_messy_test.csv',
   '/404.html',
   '/curriculum_version.json'
 ];
