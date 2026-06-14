@@ -517,8 +517,9 @@ export function renderCsvCleaner(container, state, navigateTo) {
     const col = fillColSelect.value;
     // Extract numbers to compute average
     const numbers = cleanedData.data
-      .map(row => Number(row[col]))
-      .filter(num => !isNaN(num) && rowHasValue(num));
+      .map(row => row[col])
+      .filter(val => val !== null && val !== undefined && val.toString().trim() !== '' && !isNaN(Number(val)))
+      .map(val => Number(val));
 
     if (numbers.length === 0) {
       alert(`No valid numerical records found in column "${col}" to calculate mean.`);
